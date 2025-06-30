@@ -8,6 +8,9 @@ import Pricing from "../components/Pricing";
 import Testimonials from "../components/Testimonials";
 import ExploreMore from "../components/ExploreMore";
 import ContactUs from '../components/ContactUs'
+import FinancialToolsSection from "../components/FinancialToolsSection";
+import IdealPlanQuiz from "../components/IdealPlanQuiz";
+import TrustBadgesSection from "../components/TrustBadgesSection";
 
 const Home = () => {
   return (
@@ -17,8 +20,11 @@ const Home = () => {
       <Features2 />
       <Services />
       <Pricing />
-      <Testimonials />
+      <IdealPlanQuiz />
+      <FinancialToolsSection />
       <ExploreMore />
+      <Testimonials />
+      <TrustBadgesSection />
       <ContactUs />
       <Footer />
     </div>

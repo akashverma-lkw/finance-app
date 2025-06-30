@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 
 // User Pages
 import Home from "./pages/Home";
@@ -35,7 +36,9 @@ function App() {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
       </Routes>
+      <ScrollToTop />
     </Router>
+    
   );
 }
 
