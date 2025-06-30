@@ -1,6 +1,6 @@
 # 🚀 FinSecure – Your Smart Financial Companion 💰🔐
 
-![FinSecure Banner](https://your-banner-image-url.com) <!-- Replace with actual banner image -->
+![FinSecure Banner](https://res.cloudinary.com/dsqr9jkvq/image/upload/v1751282783/finSecure_hicxcl.png) <!-- Replace with actual banner image -->
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 [![React](https://img.shields.io/badge/frontend-React-blue)](https://reactjs.org/)
