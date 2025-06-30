@@ -13,7 +13,6 @@ import LoginModal from "./pages/Login";
 import MyAccount from "./pages/MyAccount";
 
 // Admin Pages
-import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
@@ -33,7 +32,6 @@ function App() {
         <Route path="/help" element={<div className="text-center mt-20">Help Page</div>} />
 
         {/* ADMIN ROUTES */}
-        <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
       </Routes>

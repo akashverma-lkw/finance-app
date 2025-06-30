@@ -2,13 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* in global css */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-

@@ -7,19 +7,19 @@ import { FaUsers } from "react-icons/fa";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
-  const [currentSection, setCurrentSection] = useState("welcome"); // welcome | users
+  const [currentSection, setCurrentSection] = useState("welcome");
   const navigate = useNavigate();
 
   const token = localStorage.getItem("userToken");
   const role = localStorage.getItem("userRole");
 
   useEffect(() => {
-  if (!token || role !== "admin") {
-    navigate("/login");
-  } else {
-    fetchUsers();
-  }
-}, []);
+    if (!token || role !== "admin") {
+      navigate("/login");
+    } else {
+      fetchUsers();
+    }
+  }, []);
 
   const fetchUsers = async () => {
     try {
@@ -57,32 +57,37 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex bg-gray-100 min-h-screen">
-      <Sidebar onNavigate={setCurrentSection} /> {/* Pass section handler if needed */}
-      <main className="flex-1 md:ml-8 p-6">
+    <div className="flex min-h-screen bg-gray-100">
+      {/* Sidebar - fixed width */}
+      <Sidebar onNavigate={setCurrentSection} />
+
+      {/* Main content */}
+      <main className="flex-1 ml-16 md:ml-64 p-4 md:p-6 transition-all duration-300">
         {currentSection === "welcome" && (
           <div>
-            <h1 className="text-3xl font-bold text-blue-800">Welcome Admin 👋</h1>
-            <p className="text-gray-600 mt-2">
+            <h1 className="text-2xl md:text-3xl font-bold text-blue-800">
+              Welcome Admin 👋
+            </h1>
+            <p className="text-gray-600 text-sm md:text-base mt-1 md:mt-2">
               Manage users, policies, and system insights right from your dashboard.
             </p>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-                <div className="bg-blue-100 p-3 rounded-full text-blue-600">
-                  <FaUsers size={24} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+              <div className="bg-white p-4 md:p-6 rounded-xl shadow flex items-center space-x-3">
+                <div className="bg-blue-100 p-2 md:p-3 rounded-full text-blue-600">
+                  <FaUsers size={20} />
                 </div>
                 <div>
-                  <p className="text-gray-600 text-sm">Total Users</p>
-                  <p className="text-xl font-bold">{users.length || "0"}</p>
+                  <p className="text-gray-600 text-xs md:text-sm">Total Users</p>
+                  <p className="text-lg md:text-xl font-bold">{users.length || "0"}</p>
                 </div>
               </div>
             </div>
 
             <button
               onClick={handleManageUsersClick}
-              className="mt-6 bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-lg shadow"
+              className="mt-6 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-sm md:text-base rounded-lg shadow"
             >
               Manage Users
             </button>
@@ -91,8 +96,10 @@ const AdminDashboard = () => {
 
         {currentSection === "users" && (
           <div className="bg-white rounded-xl shadow p-4">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-800">User Management</h2>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
+              <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-2 sm:mb-0">
+                User Management
+              </h2>
               <button
                 onClick={() => setCurrentSection("welcome")}
                 className="text-sm text-blue-600 hover:underline"

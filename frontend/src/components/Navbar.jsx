@@ -77,6 +77,13 @@ const Navbar = () => {
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 bg-white border rounded shadow-md w-44 z-50">
               <Link
+                to="/admin-dashboard"
+                onClick={() => setDropdownOpen(false)}
+                className="block px-4 py-2 hover:bg-gray-100"
+              >
+                Dashboard
+              </Link>
+              <Link
                 to="/account"
                 onClick={() => setDropdownOpen(false)}
                 className="block px-4 py-2 hover:bg-gray-100"
@@ -269,7 +276,9 @@ const Navbar = () => {
 
                 {userLoggedIn && (
                   <>
-                    <div className="text-sm font-semibold text-gray-600 px-2">👋 Hello, {userName}</div>
+                    <Link to="/admin-dashboard" onClick={() => setMobileMenuOpen(false)}>
+                      Admin Dashboard
+                    </Link>
                     <Link to="/account" onClick={() => setMobileMenuOpen(false)}>
                       My Account
                     </Link>
