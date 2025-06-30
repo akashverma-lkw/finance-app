@@ -28,7 +28,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/login`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         formData,
         { withCredentials: true }
       );

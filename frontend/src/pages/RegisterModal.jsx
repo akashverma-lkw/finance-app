@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import LoginModal from "./Login"; // ✅ Ensure path is correct
+import LoginModal from "./Login"; // Ensure path is correct
 
 const RegisterModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const RegisterModal = ({ onClose }) => {
   });
 
   const [message, setMessage] = useState("");
-  const [showLogin, setShowLogin] = useState(false); // ✅ Track login modal
+  const [showLogin, setShowLogin] = useState(false); // Track login modal
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,11 +26,11 @@ const RegisterModal = ({ onClose }) => {
     setMessage("");
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/register`,
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/register`,
         formData,
         { withCredentials: true }
       );
-      console.log("✅ Response:", res.data);
+      console.log("Response:", res.data);
       setMessage(res.data.message);
       setFormData({ name: "", email: "", phone: "", userType: "", password: "" });
       setTimeout(() => {
@@ -39,7 +39,7 @@ const RegisterModal = ({ onClose }) => {
       }, 2000)
       
     } catch (err) {
-      console.error("❌ Error:", err);
+      console.error("Error:", err);
       setMessage(err.response?.data?.message || "Something went wrong");
     }
   };

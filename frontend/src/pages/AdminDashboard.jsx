@@ -24,7 +24,7 @@ const AdminDashboard = () => {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/admin/users`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/users`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
 
     try {
       await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/admin/delete-user/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/delete-user/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

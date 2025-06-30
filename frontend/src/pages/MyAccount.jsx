@@ -19,7 +19,7 @@ const MyAccount = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/me`, {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/me`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
@@ -28,7 +28,7 @@ const MyAccount = () => {
         setUser(res.data.user);
         setFormData(res.data.user);
       } catch (err) {
-        console.error("❌ Failed to fetch user", err);
+        console.error("Failed to fetch user", err);
       }
     };
 
@@ -42,17 +42,17 @@ const MyAccount = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/update`, formData, {
+      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/update`, formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      setMessage("✅ Profile updated successfully");
+      setMessage("Profile updated successfully");
       setUser(res.data.user);
       setEditing(false);
     } catch (err) {
-      console.error("❌ Update error", err);
-      setMessage("❌ Failed to update profile");
+      console.error("Update error", err);
+      setMessage("Failed to update profile");
     }
   };
 
