@@ -1,0 +1,28 @@
+import React from "react";
+import HeroSection from "../components/HeroSection";
+import Features from "../components/Features";
+import Features2 from "../components/Features2";
+import Footer from "../components/Footer";
+import Services from "../components/Services";
+import Pricing from "../components/Pricing";
+import Testimonials from "../components/Testimonials";
+import ExploreMore from "../components/ExploreMore";
+import ContactUs from '../components/ContactUs'
+
+const Home = () => {
+  return (
+    <div>
+      <HeroSection />
+      <Features />
+      <Features2 />
+      <Services />
+      <Pricing />
+      <Testimonials />
+      <ExploreMore />
+      <ContactUs />
+      <Footer />
+    </div>
+  );
+};
+
+export default Home;
