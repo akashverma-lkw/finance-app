@@ -7,7 +7,10 @@ import {
   updateUser,
   deleteOwnUser,
   getAllUsers,
+  getUserById,
   addUserByAdmin,
+  updateUserByAdmin,
+  updateToggleRole,
   deleteUserByAdmin
 } from "../controllers/authController.js";
 
@@ -37,8 +40,11 @@ router.delete("/delete", verifyToken, deleteOwnUser); // Delete own account
 
 
 // Admin-Only Routes
-router.get("/admin/users", verifyToken, isAdmin, getAllUsers);          // View all users
+router.get("/admin/users", verifyToken, isAdmin, getAllUsers);  
+router.get("/admin/user/:id", verifyToken, isAdmin, getUserById);        // View all users
 router.post("/admin/add-user", verifyToken, isAdmin, addUserByAdmin);   // Add user
 router.delete("/admin/delete-user/:id", verifyToken, isAdmin, deleteUserByAdmin); // Delete user by ID
+router.put("/admin/update-user/:id", verifyToken, isAdmin, updateUserByAdmin); // Update user
+router.patch("/admin/toggle-role/:id", verifyToken, isAdmin, updateToggleRole); // Toggle user role
 
 export default router;

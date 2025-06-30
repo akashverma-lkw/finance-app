@@ -40,6 +40,45 @@ const AdminDashboard = () => {
     fetchUsers();
   };
 
+  const handleView = async (id) => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/admin/user/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      alert(`User Details:\n\nName: ${res.data.name}\nEmail: ${res.data.email}`);
+    } catch (err) {
+      console.error("Failed to fetch user details:", err);
+    }
+  };
+
+  const handleEdit = async (user) => {
+    const newName = prompt("Enter new name:", user.name);
+    if (!newName || newName === user.name) return;
+
+    try {
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/admin/update-user/${user._id}`, {
+        name: newName,
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchUsers(); // refresh list
+    } catch (err) {
+      console.error("Failed to update user:", err);
+    }
+  };
+
+  const handleToggleRole = async (id) => {
+    try {
+      await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/toggle-role/${id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchUsers(); // refresh list
+    } catch (err) {
+      console.error("Failed to toggle role:", err);
+    }
+  };
+
+
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure to delete this user?")) return;
 
@@ -107,7 +146,13 @@ const AdminDashboard = () => {
                 ← Back to Dashboard
               </button>
             </div>
-            <UserTable users={users} onDelete={handleDelete} />
+            <UserTable 
+              users={users}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+              onToggleRole={handleToggleRole}
+              onView={handleView}
+               />
           </div>
         )}
       </main>

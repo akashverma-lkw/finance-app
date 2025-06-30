@@ -105,6 +105,15 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+export const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("-password");
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch user", error: err.message });
+  }
+};
+
 // Admin: Add New User
 export const addUserByAdmin = async (req, res) => {
   try {
@@ -115,6 +124,32 @@ export const addUserByAdmin = async (req, res) => {
     res.status(500).json({ message: "Failed to add user", error: err.message });
   }
 };
+
+export const updateUserByAdmin = async (req, res) => {
+  try {
+    const updated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json({ message: "User updated", user: updated });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to update user", error: err.message });
+  }
+};
+
+export const updateToggleRole = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    user.userType = user.userType === "admin" ? "customer" : "admin";
+    await user.save();
+
+    res.status(200).json({ message: "User role updated", newRole: user.userType });
+  } catch (err) {
+    console.error("Toggle role error:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};
+
+
 
 // Admin: Delete User by ID
 export const deleteUserByAdmin = async (req, res) => {
