@@ -35,8 +35,12 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
   };
 
+  const isAdminLoggedIn = user?.role === "admin";
+
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isLoggedIn, isAdminLoggedIn, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
