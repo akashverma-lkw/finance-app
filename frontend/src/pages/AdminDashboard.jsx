@@ -78,7 +78,6 @@ const AdminDashboard = () => {
     }
   };
 
-
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure to delete this user?")) return;
 
@@ -96,37 +95,39 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar - fixed width */}
-      <Sidebar onNavigate={setCurrentSection} />
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+      {/* Sidebar */}
+      <div className="md:w-64 w-full md:fixed">
+        <Sidebar onNavigate={setCurrentSection} />
+      </div>
 
       {/* Main content */}
-      <main className="flex-1 ml-16 md:ml-10 mt-12 p-4 md:p-6 transition-all duration-300">
+      <main className="flex-1 md:ml-64 md:mt-0 p-4 sm:p-6 transition-all duration-300">
         {currentSection === "welcome" && (
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-blue-800">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-800">
               Welcome Admin 👋
             </h1>
-            <p className="text-gray-600 text-sm md:text-base mt-1 md:mt-2">
+            <p className="text-gray-600 text-sm sm:text-base mt-1">
               Manage users, policies, and system insights right from your dashboard.
             </p>
 
             {/* Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-              <div className="bg-white p-4 md:p-6 rounded-xl shadow flex items-center space-x-3">
-                <div className="bg-blue-100 p-2 md:p-3 rounded-full text-blue-600">
+              <div className="bg-white p-4 rounded-xl shadow flex items-center gap-3">
+                <div className="bg-blue-100 p-2 rounded-full text-blue-600">
                   <FaUsers size={20} />
                 </div>
                 <div>
-                  <p className="text-gray-600 text-xs md:text-sm">Total Users</p>
-                  <p className="text-lg md:text-xl font-bold">{users.length || "0"}</p>
+                  <p className="text-gray-600 text-xs sm:text-sm">Total Users</p>
+                  <p className="text-lg sm:text-xl font-bold">{users.length || "0"}</p>
                 </div>
               </div>
             </div>
 
             <button
               onClick={handleManageUsersClick}
-              className="mt-6 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-sm md:text-base rounded-lg shadow"
+              className="mt-6 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 text-sm sm:text-base rounded-lg shadow"
             >
               Manage Users
             </button>
@@ -136,7 +137,7 @@ const AdminDashboard = () => {
         {currentSection === "users" && (
           <div className="bg-white rounded-xl shadow p-4">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
-              <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-2 sm:mb-0">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-0">
                 User Management
               </h2>
               <button
@@ -146,13 +147,13 @@ const AdminDashboard = () => {
                 ← Back to Dashboard
               </button>
             </div>
-            <UserTable 
+            <UserTable
               users={users}
               onDelete={handleDelete}
               onEdit={handleEdit}
               onToggleRole={handleToggleRole}
               onView={handleView}
-               />
+            />
           </div>
         )}
       </main>

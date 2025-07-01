@@ -4,15 +4,15 @@ const UserTable = ({ users, onDelete, onEdit, onToggleRole, onView }) => {
   const currentUserId = localStorage.getItem("userId");
 
   return (
-    <div className="overflow-x-auto bg-white rounded-lg shadow">
-      <table className="min-w-[700px] w-full text-left text-sm">
+    <div className="overflow-x-auto bg-white rounded-lg shadow w-full">
+      <table className="min-w-[700px] w-full text-sm text-left">
         <thead className="bg-blue-100 text-blue-700 uppercase text-xs sm:text-sm">
           <tr>
-            <th className="px-4 py-2">Name</th>
-            <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2">Phone</th>
-            <th className="px-4 py-2">User Type</th>
-            <th className="px-4 py-2 text-center">Actions</th>
+            <th className="px-4 py-3 whitespace-nowrap">Name</th>
+            <th className="px-4 py-3 whitespace-nowrap">Email</th>
+            <th className="px-4 py-3 whitespace-nowrap">Phone</th>
+            <th className="px-4 py-3 whitespace-nowrap">User Type</th>
+            <th className="px-4 py-3 whitespace-nowrap text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -24,41 +24,48 @@ const UserTable = ({ users, onDelete, onEdit, onToggleRole, onView }) => {
             </tr>
           ) : (
             users.map((user) => (
-              <tr key={user._id} className="border-b hover:bg-gray-50 text-xs sm:text-sm">
-                <td className="px-4 py-3">{user.name}</td>
-                <td className="px-4 py-3">{user.email}</td>
-                <td className="px-4 py-3">{user.phone}</td>
-                <td className="px-4 py-3 capitalize">{user.userType}</td>
-                <td className="px-4 py-3 text-center flex flex-wrap justify-center gap-2">
-                  <button
-                    onClick={() => onView(user._id)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded"
-                  >
-                    View
-                  </button>
-
-                  <button
-                    onClick={() => onEdit(user)}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded"
-                  >
-                    Edit
-                  </button>
-
-                  {String(user._id) !== String(currentUserId) && (
+              <tr
+                key={user._id}
+                className="border-b hover:bg-gray-50 text-xs sm:text-sm"
+              >
+                <td className="px-4 py-3 whitespace-nowrap">{user.name}</td>
+                <td className="px-4 py-3 whitespace-nowrap">{user.email}</td>
+                <td className="px-4 py-3 whitespace-nowrap">{user.phone}</td>
+                <td className="px-4 py-3 capitalize whitespace-nowrap">
+                  {user.userType}
+                </td>
+                <td className="px-4 py-3">
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                     <button
-                      onClick={() => onToggleRole(user._id)}
-                      className="bg-indigo-500 hover:bg-indigo-600 text-white px-2 py-1 rounded"
+                      onClick={() => onView(user._id)}
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-xs"
                     >
-                      {user.userType === "admin" ? "Make User" : "Make Admin"}
+                      View
                     </button>
-                  )}
 
-                  <button
-                    onClick={() => onDelete(user._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"
-                  >
-                    Delete
-                  </button>
+                    <button
+                      onClick={() => onEdit(user)}
+                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-xs"
+                    >
+                      Edit
+                    </button>
+
+                    {String(user._id) !== String(currentUserId) && (
+                      <button
+                        onClick={() => onToggleRole(user._id)}
+                        className="bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1 rounded text-xs"
+                      >
+                        {user.userType === "admin" ? "Make User" : "Make Admin"}
+                      </button>
+                    )}
+
+                    <button
+                      onClick={() => onDelete(user._id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))

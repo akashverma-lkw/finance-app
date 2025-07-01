@@ -24,7 +24,6 @@ const resultsMap = {
   "Family Protection|26-35|₹20,000 - ₹50,000|Guaranteed": "Term Life Insurance Plan",
   "Health Security|36-50|₹50,000 - ₹1,00,000|Guaranteed": "Family Health Insurance",
   "Retirement Planning|51+|₹1,00,000+|Mix of both": "Pension + Annuity Plan",
-  // Add more combinations as needed...
 };
 
 const IdealPlanQuiz = () => {
