@@ -12,8 +12,7 @@
 
 ## 🖼️ Live Preview
 
-👉 [View Live Project](https://your-deployed-link.com)  
-👉 [Backend API Docs](https://your-api-docs-link.com)
+👉 [View Live Project](https://finsecure-xi.vercel.app)  
 
 ---
 
@@ -28,14 +27,6 @@
 | Testimonials, FAQs, Blogs | ✅ Completed |
 | Contact Form with Icons | ✅ Completed |
 | Secure Backend (JWT + Role-Based Access) | ✅ Completed |
-
----
-
-## 📽️ Project Overview (GIF Preview)
-
-> ✨ Watch how **FinSecure** empowers users to manage insurance, investment, and policies securely.
-
-![Demo GIF](https://your-demo-gif-link.com) <!-- Replace with actual screen-recorded gif -->
 
 ---
 
