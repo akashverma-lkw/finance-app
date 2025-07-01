@@ -65,22 +65,17 @@ const Features = () => {
   return (
     <section className="min-h-[90vh] py-12 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e0_1px,transparent_1px)] [background-size:16px_16px] opacity-30 z-0" />
-
-      {/* Section Badge */}
       <div className="text-center mb-4 relative z-10">
         <span className="inline-block text-sm bg-purple-100 text-purple-700 px-4 py-1 rounded-full font-medium">
           Our Highlights
         </span>
       </div>
-
       <h2 className="text-4xl md:text-5xl font-bold text-center text-blue-900 relative z-10">
         Why Choose <span className="text-purple-600">FinSecure?</span>
       </h2>
-
       <p className="text-center mt-4 text-lg text-gray-600 max-w-2xl mx-auto relative z-10">
         We bring security, transparency, and ease to your financial decisions.
       </p>
-
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 px-6 mt-20 max-w-7xl mx-auto relative z-10">
         {features.map((f, i) => (
           <motion.div

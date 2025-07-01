@@ -62,12 +62,11 @@ const RegisterModal = ({ onClose }) => {
           <X size={22} />
         </button>
 
-        {/* Title */}
         <h2 className="text-2xl font-bold mb-6 text-center text-blue-700">Create Your Account</h2>
 
         {/* Registration Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name */}
+
           <div className="relative">
             <User className="absolute left-3 top-3.5 text-gray-400" size={18} />
             <input
@@ -81,7 +80,6 @@ const RegisterModal = ({ onClose }) => {
             />
           </div>
 
-          {/* Email */}
           <div className="relative">
             <Mail className="absolute left-3 top-3.5 text-gray-400" size={18} />
             <input
@@ -95,17 +93,9 @@ const RegisterModal = ({ onClose }) => {
             />
           </div>
 
-          {/* Phone */}
           <div className="relative flex items-center">
-            {/* Phone Icon */}
             <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-
-            {/* Country Code (Fixed) */}
-            <span className="pl-10 pr-2 py-2 border border-r-0 rounded-l-md bg-gray-100 text-gray-600 text-sm">
-              +91
-            </span>
-
-            {/* User Input Field */}
+            <span className="pl-10 pr-2 py-2 border border-r-0 rounded-l-md bg-gray-100 text-gray-600 text-sm">+91</span>
             <input
               type="tel"
               name="phone"
@@ -124,8 +114,6 @@ const RegisterModal = ({ onClose }) => {
             />
           </div>
 
-
-          {/* User Type Selector */}
           <div className="relative w-full">
             <FaUserTag
               className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -149,7 +137,6 @@ const RegisterModal = ({ onClose }) => {
             />
           </div>
 
-          {/* Password */}
           <div className="relative">
             <Lock className="absolute left-3 top-3.5 text-gray-400" size={18} />
             <input
@@ -163,7 +150,6 @@ const RegisterModal = ({ onClose }) => {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold transition"
@@ -171,13 +157,11 @@ const RegisterModal = ({ onClose }) => {
             Register
           </button>
 
-          {/* Message */}
           {message && (
             <p className="text-center text-sm text-green-600 mt-2">{message}</p>
           )}
         </form>
 
-        {/* Switch to Login */}
         <p className="text-sm text-center mt-4 text-gray-700">
           Already have an account?{" "}
           <button
@@ -187,6 +171,7 @@ const RegisterModal = ({ onClose }) => {
             Login
           </button>
         </p>
+        
       </div>
     </div>
   );

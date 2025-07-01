@@ -44,7 +44,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         navigate("/");
       }
 
-      onClose(); // Close the modal
+      onClose();
       window.location.reload();
     } catch (err) {
       setError(err.response?.data?.message || "Login failed. Try again.");
@@ -64,13 +64,12 @@ const LoginModal = ({ isOpen, onClose }) => {
           <X size={24} />
         </button>
 
-        {/* Title */}
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
           Welcome Back 👋
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email */}
+ 
           <div className="relative">
             <Mail className="absolute left-3 top-3.5 text-gray-400" size={18} />
             <input
@@ -84,7 +83,6 @@ const LoginModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Password */}
           <div className="relative">
             <Lock className="absolute left-3 top-3.5 text-gray-400" size={18} />
             <input
@@ -98,7 +96,6 @@ const LoginModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold transition"

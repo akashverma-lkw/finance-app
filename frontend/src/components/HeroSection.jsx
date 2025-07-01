@@ -44,16 +44,9 @@ const HeroSection = () => {
         {heroSlides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-20 px-4 text-center min-h-[450px] flex flex-col justify-center items-center">
-              {/* Icon */}
               {slide.icon}
-              
-              {/* Title */}
               <h1 className="text-4xl md:text-6xl font-bold mb-4">{slide.title}</h1>
-              
-              {/* Description */}
               <p className="text-lg md:text-xl mb-6 max-w-2xl">{slide.description}</p>
-              
-              {/* CTA Button */}
               <button className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition">
                 {slide.buttonText}
               </button>

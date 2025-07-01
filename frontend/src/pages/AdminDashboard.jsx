@@ -61,7 +61,7 @@ const AdminDashboard = () => {
       }, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      fetchUsers(); // refresh list
+      fetchUsers();
     } catch (err) {
       console.error("Failed to update user:", err);
     }
@@ -72,7 +72,7 @@ const AdminDashboard = () => {
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/toggle-role/${id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      fetchUsers(); // refresh list
+      fetchUsers();
     } catch (err) {
       console.error("Failed to toggle role:", err);
     }
