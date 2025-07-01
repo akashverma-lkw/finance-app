@@ -101,7 +101,7 @@ const AdminDashboard = () => {
       <Sidebar onNavigate={setCurrentSection} />
 
       {/* Main content */}
-      <main className="flex-1 ml-16 md:ml-16 p-4 md:p-6 transition-all duration-300">
+      <main className="flex-1 ml-16 md:ml-10 mt-12 p-4 md:p-6 transition-all duration-300">
         {currentSection === "welcome" && (
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-blue-800">

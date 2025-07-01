@@ -3,7 +3,6 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaTwitter,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -12,7 +11,6 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-10 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
 
-        {/* Company Info */}
         <div>
           <h3 className="text-xl font-bold text-purple-400">FinSecure</h3>
           <p className="text-sm mt-2 text-gray-400">
@@ -20,7 +18,6 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Quick Links */}
         <div>
           <h4 className="font-semibold mb-3 text-purple-300">Quick Links</h4>
           <ul className="space-y-2 text-sm text-gray-300">
@@ -31,7 +28,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Legal */}
         <div>
           <h4 className="font-semibold mb-3 text-purple-300">Legal</h4>
           <ul className="space-y-2 text-sm text-gray-300">
@@ -41,7 +37,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Social Links */}
         <div>
           <h4 className="font-semibold mb-3 text-purple-300">Connect with us</h4>
           <div className="flex space-x-4">
@@ -81,7 +76,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Divider */}
       <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} FinSecure. All rights reserved.
       </div>

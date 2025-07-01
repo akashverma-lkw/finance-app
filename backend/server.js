@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { config } from "dotenv";
 import connectDB from "./config/db.js";
-import authRoutes from "./routes/authRoutes.js"; // ✅ merged routes
+import authRoutes from "./routes/authRoutes.js";
 
 config();
 connectDB();
@@ -23,9 +23,9 @@ app.use(
 app.use(express.json());
 
 // Unified Auth & Admin Routes
-app.use("/api", authRoutes); // All endpoints prefixed with /api
+app.use("/api", authRoutes);
 
-// Root Test Route (optional)
+// Backend Test Route
 app.get("/", (req, res) => {
   res.send("API is running...");
 });

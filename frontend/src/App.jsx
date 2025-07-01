@@ -15,6 +15,7 @@ import MyAccount from "./pages/MyAccount";
 
 // Admin Pages
 import AdminDashboard from "./pages/AdminDashboard";
+import UserTable from "./components/UserTable";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
 
         {/* ADMIN ROUTES */}
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/admin-dashboard/users" element={<UserTable />} />
 
       </Routes>
       <ScrollToTop />

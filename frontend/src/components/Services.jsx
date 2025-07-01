@@ -51,8 +51,6 @@ const Services = () => {
         <p className="text-gray-600 mb-12">
           Empowering your financial journey with innovative, secure, and user-friendly solutions.
         </p>
-
-        {/* 👇 Carousel for Mobile */}
         <div className="sm:hidden">
           <Slider {...sliderSettings}>
             {services.map((service, index) => (
@@ -68,8 +66,6 @@ const Services = () => {
             ))}
           </Slider>
         </div>
-
-        {/* 👇 Grid for Desktop */}
         <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 cursor-pointer">
           {services.map((service, index) => (
             <div

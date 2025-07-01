@@ -50,7 +50,6 @@ const FinancialToolsSection = () => {
         <p className="text-center text-gray-600 text-lg mb-10">
           Explore our powerful calculators to make smart financial decisions.
         </p>
-
         <div className="space-y-6">
           {tools.map((tool, index) => (
             <a

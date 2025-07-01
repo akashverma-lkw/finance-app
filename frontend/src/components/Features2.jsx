@@ -66,7 +66,6 @@ const Features2 = () => {
           Discover how we help you stay in control of your finances with powerful, secure, and easy-to-use tools.
         </p>
 
-        {/* 👇 Auto Carousel on Mobile */}
         <div className="sm:hidden">
           <Slider {...sliderSettings}>
             {features.map((feature, index) => (
@@ -81,7 +80,6 @@ const Features2 = () => {
           </Slider>
         </div>
 
-        {/* 👇 Grid for Desktop */}
         <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left cursor-pointer">
           {features.map((feature, index) => (
             <div key={index} className="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">

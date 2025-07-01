@@ -11,6 +11,7 @@ import ContactUs from '../components/ContactUs'
 import FinancialToolsSection from "../components/FinancialToolsSection";
 import IdealPlanQuiz from "../components/IdealPlanQuiz";
 import TrustBadgesSection from "../components/TrustBadgesSection";
+import FinanceMadeEasy from "../components/FinanceMadeEasy";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <Pricing />
       <IdealPlanQuiz />
       <FinancialToolsSection />
+      <FinanceMadeEasy />
       <ExploreMore />
       <Testimonials />
       <TrustBadgesSection />

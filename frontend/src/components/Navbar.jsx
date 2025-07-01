@@ -16,8 +16,6 @@ const Navbar = () => {
   const [showProducts, setShowProducts] = useState(false);
   const [showCompany, setShowCompany] = useState(false);
 
-
-
   const [userName, setUserName] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef();
@@ -105,7 +103,6 @@ const Navbar = () => {
       )}
     </>
   );
-
   return (
     <>
       <header className="bg-white shadow sticky top-0 z-50">
@@ -114,40 +111,35 @@ const Navbar = () => {
             FinSecure
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 text-gray-700 font-medium items-center">
             <Link to="/">Home</Link>
 
-            {/* Services Dropdown */}
             <div className="relative group">
               <button className="hover:text-blue-700">Services</button>
               <div className="absolute top-full left-0 mt-2 w-52 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50">
-                <Link to="/services/life-insurance" className="block px-4 py-2 hover:bg-gray-100">Life Insurance</Link>
-                <Link to="/services/health-insurance" className="block px-4 py-2 hover:bg-gray-100">Health Insurance</Link>
-                <Link to="/services/term-plans" className="block px-4 py-2 hover:bg-gray-100">Term Plans</Link>
-                <Link to="/services/investment-plans" className="block px-4 py-2 hover:bg-gray-100">Investment Plans</Link>
-                <Link to="/services/retirement" className="block px-4 py-2 hover:bg-gray-100">Retirement Plans</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Life Insurance</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Health Insurance</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Term Plans</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Investment Plans</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Retirement Plans</Link>
               </div>
             </div>
 
-            {/* Products Dropdown */}
             <div className="relative group">
               <button className="hover:text-blue-700 font-medium px-4 py-2">
                 Products
               </button>
-              {/* Dropdown must be inside same parent with no spacing */}
               <div className="absolute left-0 mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-50">
-                <Link to="/products/ulip" className="block px-4 py-2 hover:bg-gray-100 text-sm">ULIP (Unit Linked Insurance Plan)</Link>
-                <Link to="/products/mutual-funds" className="block px-4 py-2 hover:bg-gray-100 text-sm">Mutual Funds</Link>
-                <Link to="/products/sip" className="block px-4 py-2 hover:bg-gray-100 text-sm">SIP (Systematic Investment Plan)</Link>
-                <Link to="/products/tax-saving" className="block px-4 py-2 hover:bg-gray-100 text-sm">Tax Saving Plans</Link>
-                <Link to="/products/pension" className="block px-4 py-2 hover:bg-gray-100 text-sm">Pension Schemes</Link>
-                <Link to="/products/critical-illness" className="block px-4 py-2 hover:bg-gray-100 text-sm">Critical Illness Plans</Link>
-                <Link to="/products/guaranteed-return" className="block px-4 py-2 hover:bg-gray-100 text-sm">Guaranteed Return Plans</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">ULIP (Unit Linked Insurance Plan)</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">Mutual Funds</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">SIP (Systematic Investment Plan)</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">Tax Saving Plans</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">Pension Schemes</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">Critical Illness Plans</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100 text-sm">Guaranteed Return Plans</Link>
               </div>
             </div>
 
-            {/* More Dropdown */}
             <div
               className="relative group"
               onMouseEnter={() => setShowCompany(true)}
@@ -157,46 +149,24 @@ const Navbar = () => {
                 More
               </button>
 
-              {/* Dropdown */}
-              <div
-                className={`absolute top-full left-0 mt-1 bg-white shadow-md rounded-lg w-56 z-50 transition-opacity duration-200 ${showCompany ? "opacity-100 visible" : "opacity-0 invisible"
-                  }`}
-              >
-                <Link to="/about" className="block px-4 py-2 hover:bg-gray-100">
-                  About Us
-                </Link>
-                <Link to="/team" className="block px-4 py-2 hover:bg-gray-100">
-                  Our Team
-                </Link>
-                <Link to="/careers" className="block px-4 py-2 hover:bg-gray-100">
-                  Careers
-                </Link>
-                <Link to="/partners" className="block px-4 py-2 hover:bg-gray-100">
-                  Partners
-                </Link>
-                <Link to="/media" className="block px-4 py-2 hover:bg-gray-100">
-                  Media & Press
-                </Link>
-                <Link to="/testimonials" className="block px-4 py-2 hover:bg-gray-100">
-                  Testimonials
-                </Link>
-                <Link to="/awards" className="block px-4 py-2 hover:bg-gray-100">
-                  Awards & Recognition
-                </Link>
+              <div className={`absolute top-full left-0 mt-1 bg-white shadow-md rounded-lg w-56 z-50 transition-opacity duration-200 ${showCompany ? "opacity-100 visible" : "opacity-0 invisible"}`} >
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">About Us</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Our Team</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Careers</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Partners</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Media & Press</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Testimonials</Link>
+                <Link to="#" className="block px-4 py-2 hover:bg-gray-100">Awards & Recognition</Link>
               </div>
             </div>
-
-
             <AuthButtons />
           </nav>
 
-          {/* Mobile Menu Button */}
           <button className="md:hidden text-gray-700" onClick={() => setMobileMenuOpen(true)}>
             <Menu size={28} />
           </button>
         </div>
 
-        {/* Mobile Drawer */}
         {mobileMenuOpen && (
           <div className="md:hidden fixed inset-0 bg-black/40 z-40">
             <div className="bg-white w-3/4 h-full p-6 shadow-lg relative z-50">
@@ -215,11 +185,11 @@ const Navbar = () => {
                   </button>
                   {showServices && (
                     <div className="ml-4 mt-2 flex flex-col space-y-2 text-sm text-gray-700">
-                      <Link to="/services/life-insurance" onClick={() => setMobileMenuOpen(false)}>Life Insurance</Link>
-                      <Link to="/services/health-insurance" onClick={() => setMobileMenuOpen(false)}>Health Insurance</Link>
-                      <Link to="/services/term-plans" onClick={() => setMobileMenuOpen(false)}>Term Plans</Link>
-                      <Link to="/services/investment-plans" onClick={() => setMobileMenuOpen(false)}>Investment Plans</Link>
-                      <Link to="/services/retirement" onClick={() => setMobileMenuOpen(false)}>Retirement Plans</Link>
+                      <Link to="#" onClick={() => setMobileMenuOpen(false)}>Life Insurance</Link>
+                      <Link to="#" onClick={() => setMobileMenuOpen(false)}>Health Insurance</Link>
+                      <Link to="#" onClick={() => setMobileMenuOpen(false)}>Term Plans</Link>
+                      <Link to="#" onClick={() => setMobileMenuOpen(false)}>Investment Plans</Link>
+                      <Link to="#" onClick={() => setMobileMenuOpen(false)}>Retirement Plans</Link>
                     </div>
                   )}
                 </div>
@@ -231,35 +201,32 @@ const Navbar = () => {
                 </button>
                 {showProducts && (
                   <div className="ml-4 mt-2 flex flex-col space-y-2 text-sm text-gray-700">
-                    <Link to="/products/ulip" onClick={() => setMobileMenuOpen(false)}>ULIP Plans</Link>
-                    <Link to="/products/mutual-funds" onClick={() => setMobileMenuOpen(false)}>Mutual Funds</Link>
-                    <Link to="/products/sip" onClick={() => setMobileMenuOpen(false)}>SIP Plans</Link>
-                    <Link to="/products/tax-saving" onClick={() => setMobileMenuOpen(false)}>Tax Saving Plans</Link>
-                    <Link to="/products/pension" onClick={() => setMobileMenuOpen(false)}>Pension Schemes</Link>
-                    <Link to="/products/critical-illness" onClick={() => setMobileMenuOpen(false)}>Critical Illness Plans</Link>
-                    <Link to="/products/guaranteed-return" onClick={() => setMobileMenuOpen(false)}>Guaranteed Return Plans</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>ULIP Plans</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Mutual Funds</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>SIP Plans</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Tax Saving Plans</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Pension Schemes</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Critical Illness Plans</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Guaranteed Return Plans</Link>
                   </div>
                 )}
-
                 <button
                   onClick={() => setShowCompany(!showCompany)}
                   className="text-left text-gray-800 font-medium"
                 >
                   More {showCompany}
                 </button>
-
                 {showCompany && (
                   <div className="ml-4 mt-2 flex flex-col space-y-2 text-sm text-gray-700">
-                    <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-                    <Link to="/team" onClick={() => setMobileMenuOpen(false)}>Our Team</Link>
-                    <Link to="/careers" onClick={() => setMobileMenuOpen(false)}>Careers</Link>
-                    <Link to="/partners" onClick={() => setMobileMenuOpen(false)}>Partners</Link>
-                    <Link to="/media" onClick={() => setMobileMenuOpen(false)}>Media & Press</Link>
-                    <Link to="/testimonials" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
-                    <Link to="/awards" onClick={() => setMobileMenuOpen(false)}>Awards & Recognition</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Our Team</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Careers</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Partners</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Media & Press</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
+                    <Link to="#" onClick={() => setMobileMenuOpen(false)}>Awards & Recognition</Link>
                   </div>
                 )}
-
                 {!userLoggedIn && (
                   <>
                     <button
@@ -273,7 +240,6 @@ const Navbar = () => {
                     </button>
                   </>
                 )}
-
                 {userLoggedIn && (
                   <>
                     <Link to="/admin-dashboard" onClick={() => setMobileMenuOpen(false)}>
@@ -298,8 +264,6 @@ const Navbar = () => {
           </div>
         )}
       </header>
-
-      {/* Modals */}
       {showRegister && <RegisterModal onClose={() => setShowRegister(false)} />}
       {showLogin && <LoginModal isOpen={showLogin} onClose={() => setShowLogin(false)} />}
     </>

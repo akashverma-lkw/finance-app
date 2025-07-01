@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-// 🔐 Verify JWT Token Middleware
+// Verify JWT Token Middleware
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // { id, userType }
+    req.user = decoded;
     next();
   } catch (err) {
     return res.status(401).json({ message: "Invalid or expired token" });

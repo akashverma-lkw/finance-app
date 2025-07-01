@@ -4,10 +4,6 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaClock,
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
 } from "react-icons/fa";
 
 const ContactUs = () => {
@@ -20,8 +16,7 @@ const ContactUs = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Contact Info */}
-          <div className="space-y-6 text-gray-700 text-base mt-10">
+          <div className="space-y-6 text-gray-700 text-base md:mt-14">
             <div className="flex items-start gap-4">
               <FaPhoneAlt className="text-blue-600 mt-1" size={20} />
               <div>
@@ -52,7 +47,6 @@ const ContactUs = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <form className="bg-gray-50 p-6 rounded-lg shadow space-y-4">
             <input
               type="text"

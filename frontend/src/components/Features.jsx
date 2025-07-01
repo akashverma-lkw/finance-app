@@ -104,7 +104,6 @@ const Features = () => {
         ))}
       </div>
 
-      {/* CTA Footer */}
       <div className="mt-20 text-center relative z-10">
         <h3 className="text-2xl font-semibold text-gray-800 mb-4">Still not sure?</h3>
         <p className="text-gray-600 mb-6">Talk to our insurance experts for a free consultation.</p>

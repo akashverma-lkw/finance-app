@@ -34,17 +34,17 @@ router.post("/logout", logout);
 
 
 // Authenticated User Routes
-router.get("/me", verifyToken, getUserData);         // Get logged-in user data
-router.put("/update", verifyToken, updateUser);      // Update own profile
-router.delete("/delete", verifyToken, deleteOwnUser); // Delete own account
+router.get("/me", verifyToken, getUserData);         
+router.put("/update", verifyToken, updateUser);      
+router.delete("/delete", verifyToken, deleteOwnUser); 
 
 
 // Admin-Only Routes
 router.get("/admin/users", verifyToken, isAdmin, getAllUsers);  
-router.get("/admin/user/:id", verifyToken, isAdmin, getUserById);        // View all users
-router.post("/admin/add-user", verifyToken, isAdmin, addUserByAdmin);   // Add user
-router.delete("/admin/delete-user/:id", verifyToken, isAdmin, deleteUserByAdmin); // Delete user by ID
-router.put("/admin/update-user/:id", verifyToken, isAdmin, updateUserByAdmin); // Update user
-router.patch("/admin/toggle-role/:id", verifyToken, isAdmin, updateToggleRole); // Toggle user role
+router.get("/admin/user/:id", verifyToken, isAdmin, getUserById);        
+router.post("/admin/add-user", verifyToken, isAdmin, addUserByAdmin);   
+router.delete("/admin/delete-user/:id", verifyToken, isAdmin, deleteUserByAdmin); 
+router.put("/admin/update-user/:id", verifyToken, isAdmin, updateUserByAdmin); 
+router.patch("/admin/toggle-role/:id", verifyToken, isAdmin, updateToggleRole); 
 
 export default router;

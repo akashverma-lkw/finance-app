@@ -39,7 +39,6 @@ const IdealPlanQuiz = () => {
     if (step + 1 < questions.length) {
       setStep(step + 1);
     } else {
-      // Calculate result
       const key = newAnswers.join("|");
       const matchedResult = resultsMap[key] || "Balanced Plan (Custom Recommendation)";
       setResult(matchedResult);
