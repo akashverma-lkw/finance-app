@@ -71,7 +71,8 @@ const Features = () => {
         </span>
       </div>
       <h2 className="text-4xl md:text-5xl font-bold text-center text-blue-900 relative z-10">
-        Why Choose <span className="text-purple-600">FinSecure?</span>
+        Why Choose <span className="bg-gradient-to-r from-blue-800 to-indigo-600 bg-clip-text text-transparent font-semibold">FinSecure?</span>
+
       </h2>
       <p className="text-center mt-4 text-lg text-gray-600 max-w-2xl mx-auto relative z-10">
         We bring security, transparency, and ease to your financial decisions.

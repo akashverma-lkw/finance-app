@@ -21,6 +21,8 @@ const Navbar = () => {
   const dropdownRef = useRef();
 
   const { isAdminLoggedIn, logout } = useContext(AuthContext);
+  const { isCustomerLoggedIn } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -73,7 +75,7 @@ const Navbar = () => {
             <span className="text-sm font-medium">{userName}</span>
           </button>
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 bg-white border rounded shadow-md w-44 z-50">
+            <div className="absolute left-0 mt-2 bg-white border rounded shadow-md w-52 z-50">
               {isAdminLoggedIn && (
                 <Link
                   to="/admin-dashboard"
@@ -81,6 +83,15 @@ const Navbar = () => {
                   className="block px-4 py-2 hover:bg-gray-100"
                 >
                   Dashboard
+                </Link>
+              )}
+              {isCustomerLoggedIn && (
+                <Link
+                  to="/customer/overview"
+                  onClick={() => setDropdownOpen(false)}
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Customer Dashboard
                 </Link>
               )}
               <Link
@@ -247,6 +258,14 @@ const Navbar = () => {
                     {isAdminLoggedIn && (
                       <Link to="/admin-dashboard" onClick={() => setMobileMenuOpen(false)}>
                         Admin Dashboard
+                      </Link>
+                    )}
+                    {isCustomerLoggedIn && (
+                      <Link
+                        to="/customer/overview"
+                        onClick={() => setDropdownOpen(false)}
+                      >
+                        Customer Dashboard
                       </Link>
                     )}
                     <Link to="/account" onClick={() => setMobileMenuOpen(false)}>

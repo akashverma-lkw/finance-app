@@ -1,10 +1,12 @@
+// AuthContext.jsx
 import React, { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // contains name, role, token
+  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const token = localStorage.getItem("userToken");
@@ -15,32 +17,26 @@ export const AuthProvider = ({ children }) => {
       setUser({ name, role, token });
       setIsLoggedIn(true);
     }
+
+    setLoading(false); 
   }, []);
 
   const login = ({ token, name, role }) => {
     localStorage.setItem("userToken", token);
     localStorage.setItem("userName", name);
     localStorage.setItem("userRole", role);
-
     setUser({ name, role, token });
     setIsLoggedIn(true);
   };
 
   const logout = () => {
-    localStorage.removeItem("userToken");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userRole");
-
+    localStorage.clear();
     setUser(null);
     setIsLoggedIn(false);
   };
 
-  const isAdminLoggedIn = user?.role === "admin";
-
   return (
-    <AuthContext.Provider
-      value={{ user, isLoggedIn, isAdminLoggedIn, login, logout }}
-    >
+    <AuthContext.Provider value={{ user, isLoggedIn, loading, login, logout, isAdminLoggedIn: user?.role === "admin", isCustomerLoggedIn: user?.role === "customer" }}>
       {children}
     </AuthContext.Provider>
   );

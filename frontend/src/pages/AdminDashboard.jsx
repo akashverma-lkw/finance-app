@@ -15,7 +15,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (!token || role !== "admin") {
-      navigate("/login");
+      navigate("/");
     } else {
       fetchUsers();
     }

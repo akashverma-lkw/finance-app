@@ -40,7 +40,11 @@ const LoginModal = ({ isOpen, onClose }) => {
 
       if (user.userType === "admin") {
         navigate("/admin-dashboard");
-      } else {
+      } 
+      else if (user.userType === "customer") {
+      navigate("/");
+      }
+      else {
         navigate("/");
       }
 
