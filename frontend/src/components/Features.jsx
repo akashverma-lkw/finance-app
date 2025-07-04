@@ -70,7 +70,7 @@ const Features = () => {
           Our Highlights
         </span>
       </div>
-      <h2 className="text-4xl md:text-5xl font-bold text-center text-blue-900 relative z-10">
+      <h2 className="text-3xl md:text-5xl font-bold text-center text-blue-900 relative z-10">
         Why Choose <span className="bg-gradient-to-r from-blue-800 to-indigo-600 bg-clip-text text-transparent font-semibold">FinSecure?</span>
 
       </h2>
