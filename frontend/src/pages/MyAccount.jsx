@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext"; // <-- Adjust the path if needed
 import {
   FaUser,
   FaEnvelope,
@@ -10,6 +11,7 @@ import {
 import { FiCheckCircle, FiXCircle } from "react-icons/fi";
 
 const MyAccount = () => {
+  const { profileImage, setProfileImage } = useContext(AuthContext); // 🔄 Global image state
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -36,13 +38,17 @@ const MyAccount = () => {
         setUser(res.data.user);
         setFormData(res.data.user);
         setPreviewImage(res.data.user.profileImage?.url);
+
+        // Update context and localStorage
+        localStorage.setItem("userImage", res.data.user.profileImage?.url);
+        setProfileImage(res.data.user.profileImage?.url);
       } catch (err) {
         console.error("Failed to fetch user", err);
       }
     };
 
     if (token) fetchUser();
-  }, [token]);
+  }, [token, setProfileImage]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -72,11 +78,17 @@ const MyAccount = () => {
         }
       });
 
+      const updatedImageUrl = res.data.user.profileImage?.url;
+
+      // 🔄 Update local + global image immediately
+      localStorage.setItem("userImage", updatedImageUrl);
+      setProfileImage(updatedImageUrl);
+
       setMessage("Profile updated successfully!");
       setUser(res.data.user);
       setEditing(false);
       setSelectedImage(null);
-      setPreviewImage(res.data.user.profileImage?.url);
+      setPreviewImage(updatedImageUrl);
     } catch (err) {
       console.error("Update error", err);
       setMessage("Failed to update profile.");

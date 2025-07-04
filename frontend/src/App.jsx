@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider, AuthContext } from "./context/AuthContext";
+import HelpPage from "./components/HelpPage";
 
 // User Pages
 import Home from "./pages/Home";
@@ -40,9 +41,7 @@ function AppRoutes() {
         <Route path="/login" element={<LoginModal />} />
 
         <Route path="/account" element={<MyAccount />} />
-        <Route path="/services" element={<div className="text-center mt-20">Services Page</div>} />
-        <Route path="/about" element={<div className="text-center mt-20">About Us Page</div>} />
-        <Route path="/help" element={<div className="text-center mt-20">Help Page</div>} />
+        <Route path="/help" element={<HelpPage />} />
 
         <Route path="/customer" element={<CustomerRoutes />}>
           <Route element={<CustomerDashboard />}>

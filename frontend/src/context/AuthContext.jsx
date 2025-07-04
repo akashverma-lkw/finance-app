@@ -8,6 +8,9 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true); 
 
+  const [profileImage, setProfileImage] = useState(localStorage.getItem("userImage"));
+
+
   useEffect(() => {
     const token = localStorage.getItem("userToken");
     const name = localStorage.getItem("userName");
@@ -36,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, loading, login, logout, isAdminLoggedIn: user?.role === "admin", isCustomerLoggedIn: user?.role === "customer" }}>
+    <AuthContext.Provider value={{ user, isLoggedIn, loading, login, logout, profileImage, setProfileImage, isAdminLoggedIn: user?.role === "admin", isCustomerLoggedIn: user?.role === "customer" }}>
       {children}
     </AuthContext.Provider>
   );

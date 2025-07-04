@@ -13,6 +13,13 @@ const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
+  const { profileImage, setProfileImage } = useContext(AuthContext);
+  useEffect(() => {
+  if (!profileImage) {
+    setProfileImage(localStorage.getItem("userImage"));
+  }
+}, []);
+
   const [showServices, setShowServices] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [showCompany, setShowCompany] = useState(false);
@@ -80,7 +87,7 @@ const Navbar = () => {
             className="flex items-center gap-2 text-gray-700 hover:text-blue-700 transition-all duration-300 transform hover:scale-[1.04] active:scale-100"
           >
             <img
-              src={localStorage.getItem("userImage")}
+              src={profileImage}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src =
@@ -124,6 +131,13 @@ const Navbar = () => {
               >
                 My Account
               </Link>
+              <Link
+                to="/help"
+                onClick={() => setDropdownOpen(false)}
+                className="block px-4 py-2 hover:bg-gray-100"
+              >
+                Help
+              </Link>
               <button
                 onClick={() => {
                   handleLogout();
@@ -133,6 +147,7 @@ const Navbar = () => {
               >
                 Logout
               </button>
+              
             </div>
           )}
         </div>
