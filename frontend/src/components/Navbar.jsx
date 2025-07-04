@@ -15,10 +15,10 @@ const Navbar = () => {
 
   const { profileImage, setProfileImage } = useContext(AuthContext);
   useEffect(() => {
-  if (!profileImage) {
-    setProfileImage(localStorage.getItem("userImage"));
-  }
-}, []);
+    if (!profileImage) {
+      setProfileImage(localStorage.getItem("userImage"));
+    }
+  }, []);
 
   const [showServices, setShowServices] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
@@ -148,7 +148,7 @@ const Navbar = () => {
               >
                 Logout
               </button>
-              
+
             </div>
           )}
         </div>
@@ -310,6 +310,15 @@ const Navbar = () => {
                     <Link to="/account" onClick={() => setMobileMenuOpen(false)}>
                       My Account
                     </Link>
+
+                    <Link
+                      to="/help"
+                      onClick={() => setDropdownOpen(false)}
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      Help
+                    </Link>
+
                     <button
                       onClick={() => {
                         handleLogout();
