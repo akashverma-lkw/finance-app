@@ -1,11 +1,58 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { cloudinary } from "../config/cloudinary.js";
+import streamifier from "streamifier";
+import axios from "axios"; 
+
+// Helper: Upload image from URL to Cloudinary
+const uploadFromUrl = async (imageUrl) => {
+  const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
+  const buffer = Buffer.from(response.data, "utf-8");
+
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { folder: "user_profiles" },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result);
+      }
+    );
+    streamifier.createReadStream(buffer).pipe(uploadStream);
+  });
+};
+
 
 // Register Any User (customer, employee, business, admin)
 export const registerUser = async (req, res) => {
   try {
-    const user = new User(req.body);
+    let profileImage = {
+      url: "https://icons.veryicon.com/png/o/miscellaneous/two-color-webpage-small-icon/user-244.png", // Replace with your own default image URL
+      public_id: "",
+    };
+
+    // Case 1: File uploaded via multer
+    if (req.file) {
+      profileImage = {
+        url: req.file.path,
+        public_id: req.file.filename,
+      };
+    }
+
+    // Case 2: Image URL provided in body
+    else if (req.body.profileImage && req.body.profileImage.startsWith("http")) {
+      const uploaded = await uploadFromUrl(req.body.profileImage);
+      profileImage = {
+        url: uploaded.secure_url,
+        public_id: uploaded.public_id,
+      };
+    }
+
+    const user = new User({
+      ...req.body,
+      profileImage,
+    });
+
     await user.save();
 
     res.status(201).json({
@@ -46,6 +93,7 @@ export const login = async (req, res) => {
         name: user.name,
         email: user.email,
         userType: user.userType,
+        profileImage: user.profileImage,
       },
     });
   } catch (err) {
@@ -73,13 +121,25 @@ export const getUserData = async (req, res) => {
 // Update Profile
 export const updateUser = async (req, res) => {
   try {
-    const updated = await User.findByIdAndUpdate(
-      req.user.id,
-      { $set: req.body },
-      { new: true }
-    ).select("-password");
+    const user = await User.findById(req.user.id);
 
-    res.status(200).json({ message: "Profile updated", user: updated });
+    // If image is being updated
+    if (req.file) {
+      // Delete old image if exists
+      if (user.profileImage?.public_id) {
+        await cloudinary.uploader.destroy(user.profileImage.public_id);
+      }
+
+      // Set new image data
+      req.body.profileImage = {
+        url: req.file.path,
+        public_id: req.file.filename, // from CloudinaryStorage
+      };
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, { $set: req.body }, { new: true }).select("-password");
+
+    res.status(200).json({ message: "Profile updated", user: updatedUser });
   } catch (err) {
     res.status(500).json({ message: "Failed to update profile", error: err.message });
   }
@@ -127,12 +187,32 @@ export const addUserByAdmin = async (req, res) => {
 
 export const updateUserByAdmin = async (req, res) => {
   try {
-    const updated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const updateData = { ...req.body };
+
+    if (req.file) {
+      // 🔁 Delete old image if exists
+      if (user.profileImage?.public_id) {
+        await cloudinary.uploader.destroy(user.profileImage.public_id);
+      }
+
+      // 📥 Add new Cloudinary image
+      updateData.profileImage = {
+        url: req.file.path,
+        public_id: req.file.filename,
+      };
+    }
+
+    const updated = await User.findByIdAndUpdate(req.params.id, updateData, { new: true }).select("-password");
+
     res.status(200).json({ message: "User updated", user: updated });
   } catch (err) {
     res.status(500).json({ message: "Failed to update user", error: err.message });
   }
 };
+
 
 export const updateToggleRole = async (req, res) => {
   try {
@@ -148,8 +228,6 @@ export const updateToggleRole = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
-
-
 
 // Admin: Delete User by ID
 export const deleteUserByAdmin = async (req, res) => {

@@ -18,6 +18,8 @@ const MyAccount = () => {
     phone: "",
     userType: ""
   });
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState("");
   const [message, setMessage] = useState("");
 
   const token = localStorage.getItem("userToken");
@@ -33,6 +35,7 @@ const MyAccount = () => {
         });
         setUser(res.data.user);
         setFormData(res.data.user);
+        setPreviewImage(res.data.user.profileImage?.url);
       } catch (err) {
         console.error("Failed to fetch user", err);
       }
@@ -45,17 +48,35 @@ const MyAccount = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedImage(file);
+    if (file) {
+      setPreviewImage(URL.createObjectURL(file));
+    }
+  };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/update`, formData, {
+      const form = new FormData();
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+      form.append("phone", formData.phone);
+      if (selectedImage) form.append("profileImage", selectedImage);
+
+      const res = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/update`, form, {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
         }
       });
+
       setMessage("Profile updated successfully!");
       setUser(res.data.user);
       setEditing(false);
+      setSelectedImage(null);
+      setPreviewImage(res.data.user.profileImage?.url);
     } catch (err) {
       console.error("Update error", err);
       setMessage("Failed to update profile.");
@@ -75,6 +96,15 @@ const MyAccount = () => {
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-700 mb-6 flex items-center gap-2 sm:gap-3">
           <FaUser className="text-purple-500 animate-bounce text-xl sm:text-2xl" /> My Account
         </h2>
+
+        {/* Profile Image */}
+        <div className="flex justify-center mb-6">
+          <img
+            src={previewImage || "https://icons.veryicon.com/png/o/miscellaneous/two-color-webpage-small-icon/user-244.png"}
+            alt="Profile"
+            className="w-32 h-32 rounded-full object-cover border-4 border-blue-200 shadow-md"
+          />
+        </div>
 
         {!editing ? (
           <>
@@ -111,7 +141,9 @@ const MyAccount = () => {
           <form
             onSubmit={handleUpdate}
             className="space-y-4 sm:space-y-5 mt-4 animate-fade-in transition duration-300 text-sm sm:text-base"
+            encType="multipart/form-data"
           >
+            <span className="block text-lg font-semibold mb-2 text-center">Update Details</span>
             <div>
               <label className="block mb-1 font-medium text-gray-700">Name</label>
               <input
@@ -151,6 +183,16 @@ const MyAccount = () => {
               />
             </div>
 
+            <div>
+              <label className="block mb-1 font-medium text-gray-700">Profile Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="w-full border border-gray-300 rounded-lg p-2 bg-white"
+              />
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <button
                 type="submit"
@@ -163,6 +205,8 @@ const MyAccount = () => {
                 onClick={() => {
                   setEditing(false);
                   setFormData(user);
+                  setPreviewImage(user.profileImage?.url);
+                  setSelectedImage(null);
                 }}
                 className="flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full transition"
               >

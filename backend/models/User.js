@@ -5,27 +5,37 @@ const { Schema, model } = mongoose;
 
 const userSchema = new Schema(
   {
-    name: { 
-      type: String, 
-      required: true 
+    name: {
+      type: String,
+      required: true
     },
-    email: { 
-      type: String, 
-      required: true, 
-      unique: true 
+    email: {
+      type: String,
+      required: true,
+      unique: true
     },
-    phone: { 
-      type: String, 
-      required: true 
+    phone: {
+      type: String,
+      required: true
     },
     userType: {
       type: String,
       enum: ["customer", "employee", "business", "admin"],
       required: true,
     },
-    password: { 
-      type: String, 
-      required: true 
+    password: {
+      type: String,
+      required: true
+    },
+    profileImage: {
+      url: {
+        type: String,
+        default: "https://icons.veryicon.com/png/o/miscellaneous/two-color-webpage-small-icon/user-244.png", // Replace with your actual Cloudinary default image URL
+      },
+      public_id: {
+        type: String,
+        default: "", 
+      },
     },
   },
   { timestamps: true }

@@ -15,6 +15,7 @@ import {
 } from "../controllers/authController.js";
 
 import verifyToken from "../middleware/verifyToken.js";
+import upload from "../middleware/upload.js";
 
 const router = Router();
 
@@ -26,25 +27,22 @@ const isAdmin = (req, res, next) => {
   next();
 };
 
-
 // Public Routes
-router.post("/register", registerUser);
+router.post("/register", upload.single("profileImage"), registerUser);
 router.post("/login", login);
 router.post("/logout", logout);
 
-
 // Authenticated User Routes
-router.get("/me", verifyToken, getUserData);         
-router.put("/update", verifyToken, updateUser);      
-router.delete("/delete", verifyToken, deleteOwnUser); 
-
+router.get("/me", verifyToken, getUserData);
+router.put("/update", verifyToken, upload.single("profileImage"), updateUser);
+router.delete("/delete", verifyToken, deleteOwnUser);
 
 // Admin-Only Routes
-router.get("/admin/users", verifyToken, isAdmin, getAllUsers);  
-router.get("/admin/user/:id", verifyToken, isAdmin, getUserById);        
-router.post("/admin/add-user", verifyToken, isAdmin, addUserByAdmin);   
-router.delete("/admin/delete-user/:id", verifyToken, isAdmin, deleteUserByAdmin); 
-router.put("/admin/update-user/:id", verifyToken, isAdmin, updateUserByAdmin); 
-router.patch("/admin/toggle-role/:id", verifyToken, isAdmin, updateToggleRole); 
+router.get("/admin/users", verifyToken, isAdmin, getAllUsers);
+router.get("/admin/user/:id", verifyToken, isAdmin, getUserById);
+router.post("/admin/add-user", verifyToken, isAdmin, upload.single("profileImage"), addUserByAdmin); 
+router.put("/admin/update-user/:id", verifyToken, isAdmin, upload.single("profileImage"), updateUserByAdmin);
+router.delete("/admin/delete-user/:id", verifyToken, isAdmin, deleteUserByAdmin);
+router.patch("/admin/toggle-role/:id", verifyToken, isAdmin, updateToggleRole);
 
 export default router;

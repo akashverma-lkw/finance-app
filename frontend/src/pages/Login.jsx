@@ -23,37 +23,36 @@ const LoginModal = ({ isOpen, onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
-        formData,
-        { withCredentials: true }
-      );
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+      formData,
+      { withCredentials: true }
+    );
 
-      const { token, user } = res.data;
-      localStorage.setItem("userToken", token);
-      localStorage.setItem("userName", user.name);
-      localStorage.setItem("userRole", user.userType);
+    const { token, user } = res.data;
 
-      if (user.userType === "admin") {
-        navigate("/admin-dashboard");
-      } 
-      else if (user.userType === "customer") {
+    localStorage.setItem("userToken", token);
+    localStorage.setItem("userName", user.name);
+    localStorage.setItem("userRole", user.userType);
+    localStorage.setItem("userImage", user.profileImage?.url || "");
+
+    if (user.userType === "admin") {
+      navigate("/admin-dashboard");
+    } else {
       navigate("/");
-      }
-      else {
-        navigate("/");
-      }
-
-      onClose();
-      window.location.reload();
-    } catch (err) {
-      setError(err.response?.data?.message || "Login failed. Try again.");
     }
-  };
+
+    onClose();
+    window.location.reload();
+  } catch (err) {
+    setError(err.response?.data?.message || "Login failed. Try again.");
+  }
+};
+
 
   if (!isOpen) return null;
 

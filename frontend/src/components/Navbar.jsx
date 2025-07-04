@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { FaUserCircle } from "react-icons/fa";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 import { AuthContext } from "../context/AuthContext";
 import RegisterModal from "../pages/RegisterModal";
 import LoginModal from "../pages/Login";
@@ -22,6 +23,13 @@ const Navbar = () => {
 
   const { isAdminLoggedIn, logout } = useContext(AuthContext);
   const { isCustomerLoggedIn } = useContext(AuthContext);
+
+  const [userImage, setUserImage] = useState("");
+
+  useEffect(() => {
+    const storedImage = localStorage.getItem("userImage");
+    if (storedImage) setUserImage(storedImage);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -69,10 +77,25 @@ const Navbar = () => {
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-2 text-gray-700 hover:text-blue-600"
+            className="flex items-center gap-2 text-gray-700 hover:text-blue-700 transition-all duration-300 transform hover:scale-[1.04] active:scale-100"
           >
-            <FaUserCircle size={22} />
+            <img
+              src={localStorage.getItem("userImage")}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://icons.veryicon.com/png/o/miscellaneous/two-color-webpage-small-icon/user-244.png";
+              }}
+              alt="Profile"
+              className="w-7 h-7 rounded-full object-cover border-2 border-blue-500 shadow-md ring-2 ring-blue-300 hover:ring-blue-500 transition duration-300"
+            />
             <span className="text-sm font-medium">{userName}</span>
+
+            {/* Rotating ChevronDown icon */}
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-300 ease-in-out ${dropdownOpen ? "rotate-180 text-blue-500" : "rotate-0 text-gray-400"
+                }`}
+            />
           </button>
           {dropdownOpen && (
             <div className="absolute left-0 mt-2 bg-white border rounded shadow-md w-52 z-50">

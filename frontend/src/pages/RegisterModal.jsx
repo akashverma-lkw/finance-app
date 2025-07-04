@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import LoginModal from "./Login";
 
 const RegisterModal = ({ onClose }) => {
+  const [profileImage, setProfileImage] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,14 +35,27 @@ const RegisterModal = ({ onClose }) => {
     e.preventDefault();
     setMessage("");
 
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("email", formData.email);
+    data.append("phone", formData.phone);
+    data.append("userType", formData.userType);
+    data.append("password", formData.password);
+    if (profileImage) data.append("profileImage", profileImage); // Only append if selected
+
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/register`,
-        formData,
-        { withCredentials: true }
+        data,
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "multipart/form-data" },
+        }
       );
+
       setMessage(res.data.message);
       setFormData({ name: "", email: "", phone: "", userType: "", password: "" });
+      setProfileImage(null);
       setTimeout(() => {
         navigate("/");
         window.location.reload();
@@ -49,6 +64,7 @@ const RegisterModal = ({ onClose }) => {
       setMessage(err.response?.data?.message || "Something went wrong");
     }
   };
+
 
   if (showLogin) {
     return <LoginModal isOpen={true} onClose={() => setShowLogin(false)} />;
@@ -150,6 +166,27 @@ const RegisterModal = ({ onClose }) => {
             />
           </div>
 
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Upload Profile Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setProfileImage(e.target.files[0])}
+              className="block w-full text-sm border rounded-md py-1 px-2 file:mr-4 file:py-1 file:px-4 file:rounded-md file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700"
+            />
+          </div>
+
+          {profileImage && (
+            <div className="mt-2">
+              <img
+                src={URL.createObjectURL(profileImage)}
+                alt="Preview"
+                className="w-16 h-16 rounded-full object-cover border"
+              />
+            </div>
+          )}
+
+
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold transition"
@@ -171,7 +208,7 @@ const RegisterModal = ({ onClose }) => {
             Login
           </button>
         </p>
-        
+
       </div>
     </div>
   );
