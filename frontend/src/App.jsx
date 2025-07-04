@@ -22,8 +22,6 @@ import Transactions from '../src/pages/customer/Transactions'
 import Budget from '../src/pages/customer/Budget'
 import Reports from '../src/pages/customer/Reports'
 
-
-
 // Admin Pages
 import AdminDashboard from "./pages/AdminDashboard";
 import UserTable from "./components/UserTable";

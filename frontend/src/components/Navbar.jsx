@@ -8,17 +8,45 @@ import RegisterModal from "../pages/RegisterModal";
 import LoginModal from "../pages/Login";
 
 const Navbar = () => {
+  const mobileMenuRef = useRef(null);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   const { profileImage, setProfileImage } = useContext(AuthContext);
+
   useEffect(() => {
     if (!profileImage) {
       setProfileImage(localStorage.getItem("userImage"));
     }
   }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (mobileMenuOpen && mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [mobileMenuOpen]);
+
 
   const [showServices, setShowServices] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
@@ -220,8 +248,8 @@ const Navbar = () => {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 bg-black/40 z-40">
-            <div className="bg-white w-3/4 h-full p-6 shadow-lg relative z-50">
+          <div className="md:hidden fixed inset-0 bg-black/40 z-40 overflow-hidden">
+            <div ref={mobileMenuRef} className="bg-white w-3/4 h-full p-6 shadow-lg relative z-50 overflow-y-auto scrollbar-hide">
               <button
                 className="absolute top-4 right-4 text-gray-600"
                 onClick={() => setMobileMenuOpen(false)}
@@ -313,7 +341,7 @@ const Navbar = () => {
 
                     <Link
                       to="/help"
-                      onClick={() => 
+                      onClick={() =>
                         setMobileMenuOpen(false)
                       }
                     >
