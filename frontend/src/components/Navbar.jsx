@@ -46,6 +46,7 @@ const Navbar = () => {
     localStorage.removeItem("userName");
     setUserLoggedIn(false);
     setUserName("");
+    window.location.reload();
     navigate("/");
   };
 
