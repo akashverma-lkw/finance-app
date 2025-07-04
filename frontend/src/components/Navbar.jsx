@@ -302,7 +302,7 @@ const Navbar = () => {
                     {isCustomerLoggedIn && (
                       <Link
                         to="/customer/overview"
-                        onClick={() => setDropdownOpen(false)}
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         Customer Dashboard
                       </Link>
@@ -313,7 +313,9 @@ const Navbar = () => {
 
                     <Link
                       to="/help"
-                      onClick={() => setDropdownOpen(false)}
+                      onClick={() => 
+                        setMobileMenuOpen(false)
+                      }
                     >
                       Help
                     </Link>
